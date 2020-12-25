@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
+import Header from './components/Header';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor(){
+    super();
+    this.state = {count : 0};
+
+    this.countAdd = this.countAdd.bind(this);
+    this.countSub = this.countSub.bind(this);
+    this.countReset = this.countReset.bind(this);
+
+  }
+
+  countAdd(){
+    this.setState({count: this.state.count + 1});
+  }
+
+  countSub(){
+    this.setState({count: this.state.count - 1});
+  }
+
+  countReset(){
+    this.setState({count: 0});
+  }
+
+  render(){
+    return (
+      <div class='main'>
+        <Header />
+        <div class='count'>
+          <input type='button' id='add' value='+' onClick={this.countAdd}/>
+          <p> {this.state.count} </p>
+          <input type='button' id='sub' value='-' onClick={this.countSub}/>
+        </div>
+        <input type='button' id='reset' value='RESET' onClick={this.countReset}/>
+      </div>
+    )
+  }
 }
 
 export default App;
