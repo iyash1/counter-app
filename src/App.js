@@ -1,27 +1,19 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Header from './components/Header';
+import {increment, decrement, reset} from './actions/action';
+import { connect } from 'react-redux';
 
 class App extends Component {
-  constructor(){
-    super();
-    this.state = {count : 0};
-
-    this.countAdd = this.countAdd.bind(this);
-    this.countSub = this.countSub.bind(this);
-    this.countReset = this.countReset.bind(this);
-
+  countAdd = () => {
+    this.props.increment();
   }
 
-  countAdd(){
-    this.setState({count: this.state.count + 1});
+  countSub = () => {
+    this.props.decrement();
   }
 
-  countSub(){
-    this.setState({count: this.state.count - 1});
-  }
-
-  countReset(){
-    this.setState({count: 0});
+  countReset = () => {
+    this.props.reset();
   }
 
   render(){
@@ -30,7 +22,7 @@ class App extends Component {
         <Header />
         <div class='count'>
           <input type='button' id='add' value='+' onClick={this.countAdd}/>
-          <p> {this.state.count} </p>
+          <p> {this.props.count} </p>
           <input type='button' id='sub' value='-' onClick={this.countSub}/>
         </div>
         <input type='button' id='reset' value='RESET' onClick={this.countReset}/>
@@ -39,4 +31,7 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => ({count : state.count});
+const mapDispatchToProps = {increment, decrement, reset};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
