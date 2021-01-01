@@ -2,7 +2,7 @@ import React, { Component, createContext } from 'react';
 
 export const CountContext = createContext();
 
-class CounterText extends Component {
+class CounterContextProvider extends Component {
     state = { 
         count: 0
      }
@@ -28,4 +28,4 @@ class CounterText extends Component {
     }
 }
  
-export default CounterText;
+export default CounterContextProvider;

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
-import CounterText from './contexts/CounterText';
+import CounterContextProvider from './contexts/CounterText';
 
 ReactDOM.render(
-  <CounterText><App /></CounterText>,
+  <CounterContextProvider><App /></CounterContextProvider>,
   document.getElementById('root')
 );
